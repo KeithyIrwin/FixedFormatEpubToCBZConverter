@@ -17,7 +17,7 @@ which unzipped the .epub, extracted the images, and then zipped it back
 up as a .cbz), I got pages without any text.
 All of the lettering was done via fonts.
 When I opened these in epub reading programs, the text was present, but
-not properly placed.
+not properly placed (generally it was at the bottom after an image).
 Only the iPad seemed to be able to read them properly.
 
 So, if you have .epub files like that, this will probably work for you.
@@ -28,7 +28,8 @@ the best resolution reasonably possible.
 We assume that most pages have an image which serves as their background
 and a defined "viewport" in the HTML.
 In the comics I applied this to, the viewport on the HTML was smaller than
-the resolution of the background image.
+the resolution of the background image, so some of the resolution may
+have been getting scaled away.
 
 To maximize resolution, we scale the page to match the image resolution
 rather than the viewport size.
@@ -50,12 +51,15 @@ This will not work properly for:
 images
 3) Fixed-format epubs where some other image size appears more frequently than
 the background image size
-4) Fixed-format epubs where the pages do not define a viewport measured in pixels
+4) Fixed-format epubs where the pages do not define a viewport measured in pixels (I think this is a violation of the standard)
+5) Fixed-format epubs which use .svg files for their pages rather than .xhtml
+pages (This should be easy to add support for, in theory.  Chrome should still
+be able to render this, but we don't extract the viewport sizes from .svg files)).
 
 Some of these short-comings may be remedied in the future by adding
 command-line overrides.
 
 ## Dependencies
 
-Python Lxml libraries
-Google Chrome
+* Python Lxml libraries
+* Google Chrome
