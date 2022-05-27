@@ -101,7 +101,7 @@ for rootfile in all_rootfiles:
         rootfile_cbz_dir = output_dir_name
         rootfile_cbz_name = short_name + ".cbz"
 
-    make_temp_dir(rootfile_cbz_dir)
+    make_temp_dir(rootfile_cbz_dir,False)
         
     opf_root = ET.parse(opf_filename).getroot()
     # All items
